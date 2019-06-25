@@ -23,14 +23,14 @@ public class Customer implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     @Column(name="customer_id") private String customerId; 
-    @Column(name="customer_id") private String customerName;
-    @Column(name="customer_id") private String password;
-    @Column(name="customer_id") private String ssn;
-    @Column(name="customer_id") private String phone;
-    @Column(name="customer_id") private String city;
-    @Column(name="customer_id") private String address;
-    @Column(name="customer_id") private String postalcode;
-    @Column(name="customer_id") private String photo;
+    @Column(name="customer_name") private String customerName;
+    @Column(name="password") private String password;
+    @Column(name="ssn") private String ssn;
+    @Column(name="phone") private String phone;
+    @Column(name="city") private String city;
+    @Column(name="address") private String address;
+    @Column(name="postalcode") private String postalcode;
+    @Column(name="photo") private String photo;
     
     @Override
     public String toString(){
