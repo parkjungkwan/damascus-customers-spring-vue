@@ -4,26 +4,36 @@
      <table class="w3-table w3-bordered w3-striped w3-border test w3-hoverable">
       <tbody>
         <tr class="w3-green">
-            <th>계절</th>
-            <th>과일</th>
+            <th>No.</th>
+            <th>제목</th>
+            <th>예제</th>
       </tr>
       </tbody>
       <tbody>
       <tr>
-        <td>봄</td>
-        <td>딸기</td>
+        <td>1</td>
+        <td>클릭이벤트</td>
+        <td> 
+          <router-link to='/calculator'>계산기</router-link>
+          
+        </td>
       </tr>
       <tr>
-        <td>여름</td>
-        <td>수박</td>
+        <td>2</td>
+        <td>화면이동</td>
+        <td>
+          <router-link to="/joinform">로그인</router-link>
+        </td>
       </tr>
       <tr>
-        <td>가을</td>
-        <td>포도</td>
+        <td>3</td>
+        <td></td>
+        <td></td>
       </tr>
       <tr>
-        <td>겨울</td>
-        <td>귤</td>
+        <td>4</td>
+        <td></td>
+        <td></td>
       </tr>
       </tbody>
     </table>
@@ -32,7 +42,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'home',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
