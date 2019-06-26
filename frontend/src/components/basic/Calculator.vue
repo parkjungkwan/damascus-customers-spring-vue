@@ -1,9 +1,11 @@
 <template>
-  <div class="calculator">
+<div>
+    <Nav></Nav>
+    <div class="calculator">
     <div class="display">{{current || '0'}}</div>
     <div @click="clear" class="btn">C</div>
-    <div @click="sign" class="btn">+/-</div>
-    <div @click="percent" class="btn">%</div>
+    <div class="btn">+/-</div>
+    <div  class="btn">%</div>
     <div @click="divide" class="btn operator">÷</div>
     <div @click="append('7')" class="btn">7</div>
     <div @click="append('8')" class="btn">8</div>
@@ -18,75 +20,72 @@
     <div @click="append('3')" class="btn">3</div>
     <div @click="add" class="btn operator">+</div>
     <div @click="append('0')" class="btn zero">0</div>
-    <div @click="dot" class="btn">.</div>
+    <div class="btn">.</div>
     <div @click="equal" class="btn operator">=</div>
   </div>
+  <Footer></Footer>
+</div>
+  
 </template>
 
 <script>
+import Nav from '@/components/common/Nav.vue'
+import Footer from'@/components/common/Footer.vue'
 export default {
-  data() {
+data(){
     return {
-      previous: null,
-      current: '',
-      operator: null,
-      operatorClicked: false,
+        previous : null,
+        current : '',
+        operator : null,
+        operatorClicked : false 
     }
-  },
-  methods: {
-    clear() {
-      this.current = '';
-    },
-    sign() {
-      this.current = this.current.charAt(0) === '-' ? 
-        this.current.slice(1) : `-${this.current}`;
-    },
-    percent() {
-      this.current = `${parseFloat(this.current) / 100}`;
-    },
-    append(number) {
-      if (this.operatorClicked) {
+},
+components:{
+   Nav,Footer 
+},
+methods:{
+    clear(){
         this.current = '';
-        this.operatorClicked = false;
-      }
-      this.current = `${this.current}${number}`;
     },
-    dot() {
-      if (this.current.indexOf('.') === -1) {
-        this.append('.');
-      }
+    setPrevious(){
+        this.previous = this.current;
+        this.operatorClicked = true;
     },
-    setPrevious() {
-      this.previous = this.current;
-      this.operatorClicked = true;
+    append(number){
+        if(this.operatorClicked){
+            this.current = '';
+            this.operatorClicked = false;
+        }
+        this.current = `${this.current}${number}`;
     },
-    divide() {
-      this.operator = (a, b) => a / b;
-      this.setPrevious();
+    add(){
+        this.operator = (a, b) => a + b;
+        this.setPrevious();
     },
-    times() {
-      this.operator = (a, b) => a * b;
-      this.setPrevious();
+    minus(){
+        this.operator = (a, b) => a - b;
+        this.setPrevious();
     },
-    minus() {
-      this.operator = (a, b) => a - b;
-      this.setPrevious();
+    times(){
+        this.operator = (a, b) => a * b;
+        this.setPrevious();
     },
-    add() {
-      this.operator = (a, b) => a + b;
-      this.setPrevious();
+    divide(){
+        this.operator = (a, b) => a / b;
+        this.setPrevious();
     },
-    equal() {
-      this.current = `${this.operator(
-        parseFloat(this.current), 
-        parseFloat(this.previous)
-      )}`;
-      console.log('결과 : '+this.current)
-      this.previous = null;
+    equal(){
+        this.current = `${this.operator(parseFloat(this.previous),parseFloat(this.current))}`;
+        this.previous = null;
     }
-  }
+    
+ }
+
+
 }
 </script>
+
+
 
 <style scoped>
 .calculator {
