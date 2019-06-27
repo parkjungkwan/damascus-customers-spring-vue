@@ -36,9 +36,10 @@ export default {
   },
   methods:{
       get: ()=>{
-         axios.get('/customers/count')
+         axios.get('/customers/hong')
          .then(d=>{
-             alert(`SUCCESS : ${d.customerId}`)
+           
+             alert(`SUCCESS : ${d.data.customerId}`)
          })
          .catch(e=>{
              alert('ERROR')
