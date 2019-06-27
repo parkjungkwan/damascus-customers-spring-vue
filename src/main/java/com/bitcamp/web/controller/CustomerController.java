@@ -2,6 +2,7 @@ package com.bitcamp.web.controller;
 
 import java.util.HashMap;
 
+import com.bitcamp.web.common.util.Printer;
 import com.bitcamp.web.domain.CustomerDTO;
 import com.bitcamp.web.service.CustomerService;
 
@@ -20,13 +21,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomerController {
     @Autowired CustomerService customerService;
     @Autowired CustomerDTO customer;
+    @Autowired Printer p;
     
    
 
     @PostMapping("")
     public HashMap<String,Object> join(@RequestBody CustomerDTO param){
         HashMap<String,Object> map = new HashMap<>();
-       
+        p.accept("POST 진입 ");
+        map.put("result", "SUCCESS");
         return map; 
     }
 
@@ -58,29 +61,26 @@ public class CustomerController {
    
     @GetMapping("/{customerId}")
     public CustomerDTO getCustomer(@PathVariable String customerId) {
-        System.out.println("ID 검색 진입 : "+customerId);
-        return customerService.findCustomerByCustomerId(customerId);
+        HashMap<String,Object> map = new HashMap<>();
+        p.accept("Get 진입 "+customerId);
+        customer.setCustomerId("hong");
+        return customer; 
     }
 
     @PutMapping("/{customerId}")
-    public CustomerDTO updateCustomer(@RequestBody CustomerDTO param) {
-        System.out.println("수정 할 객체: "+param.toString());
-        int res = customerService.updateCustomer(param);
-        System.out.println("====> "+res);
-        if(res == 1){
-            customer = customerService.findCustomerByCustomerId(param.getCustomerId());
-        }else{
-            System.out.println("컨트롤러 수정 실패");
-        }
-        return customer;
+    public HashMap<String,Object> updateCustomer(@PathVariable String customerId) {
+        HashMap<String,Object> map = new HashMap<>();
+        p.accept("PUT 진입: "+customerId);
+        map.put("result","SUCCESS");
+        return map;
     }
 
     @DeleteMapping("/{customerId}")
     public HashMap<String,Object> deleteCustomer(@PathVariable String customerId) {
         HashMap<String, Object> map = new HashMap<>();
+        p.accept("DELETE 진입: "+customerId);
         customer.setCustomerId(customerId);
-        customerService.deleteCustomer(customer);
-        map.put("result","탈퇴성공");
+        map.put("result","SUCCESS");
         return map;
     }
 }

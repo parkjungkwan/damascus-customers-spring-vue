@@ -13,7 +13,12 @@
     <div class="checkbox">
       <label><input type="checkbox"> Remember me</label>
     </div>
-    <button type="submit" class="btn btn-default" @click="submit">Submit</button>
+    <button class="btn btn-default" @click="get">조 회</button>
+    <button class="btn btn-default" @click="post">입 력</button>
+    <button class="btn btn-default" @click="put">수 정</button>
+    <button class="btn btn-default" @click="del">삭 제</button>
+    
+    
   </form>
   <Footer></Footer>
 </div>
@@ -30,16 +35,35 @@ export default {
     Footer
   },
   methods:{
-      submit: function(){
-          alert('되냐?')
+      get: ()=>{
          axios.get('/customers/count')
          .then(d=>{
-             alert(`SUCCESS : ${d.data}`)
+             alert(`SUCCESS : ${d.customerId}`)
          })
          .catch(e=>{
              alert('ERROR')
          })
+      },
+      post: ()=>{
+        axios.post('/customers')
+        .then(d=>{
+          alert(`POST 연동성공: ${d.result}`)
+        })
+      },
+      put: ()=>{
+        axios.put('/customers/id')
+        .then(d=>{
+          alert(`PUT 연동성공: ${d.result}`)
+        })
+      },
+      del: ()=>{
+        axios.delete('/customers/id')
+        .then(d=>{
+          alert(`DEL 연동성공: ${d.result}`)
+        })
       }
+
+
   }
 }
 </script>
