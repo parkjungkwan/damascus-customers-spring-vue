@@ -13,7 +13,7 @@
     <div class="checkbox">
       <label><input type="checkbox"> Remember me</label>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-default" @click="submit">Submit</button>
   </form>
   <Footer></Footer>
 </div>
@@ -22,11 +22,24 @@
 <script>
 import Nav from '@/components/common/Nav.vue'
 import Footer from'@/components/common/Footer.vue'
+import axios from 'axios'
 
 export default {
   components: {
     Nav,
     Footer
+  },
+  methods:{
+      submit: function(){
+          alert('되냐?')
+         axios.get('/customers/count')
+         .then(d=>{
+             alert(`SUCCESS : ${d.data}`)
+         })
+         .catch(e=>{
+             alert('ERROR')
+         })
+      }
   }
 }
 </script>
