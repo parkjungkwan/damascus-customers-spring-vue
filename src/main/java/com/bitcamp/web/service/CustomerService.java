@@ -20,7 +20,7 @@ public interface CustomerService {
     public CustomerDTO findCustomerByCustomerId(String customerId);
     public int updateCustomer(CustomerDTO customer);
     public void deleteCustomer(CustomerDTO customer);
-    public int countAll();
+    public Long countAll();
     public CustomerDTO login(CustomerDTO customer);
     
 

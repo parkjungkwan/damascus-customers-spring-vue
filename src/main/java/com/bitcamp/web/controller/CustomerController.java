@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,8 +22,6 @@ public class CustomerController {
     @Autowired CustomerService customerService;
     @Autowired CustomerDTO customer;
     @Autowired Printer p;
-    
-   
 
     @PostMapping("")
     public HashMap<String,Object> join(@RequestBody CustomerDTO param){
@@ -44,9 +41,8 @@ public class CustomerController {
     @GetMapping("/count")   
     public String count() {
         System.out.println("CustomerController count() 경로로 들어옴");
-        int count = customerService.countAll();
-        
-        return "100";
+        Long count = customerService.countAll();
+        return String.valueOf(count);
     }
 
     @GetMapping("/{customerId}/{password}")

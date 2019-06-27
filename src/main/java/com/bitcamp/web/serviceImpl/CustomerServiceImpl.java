@@ -4,7 +4,7 @@ import java.util.List;
 
 
 import com.bitcamp.web.domain.CustomerDTO;
-
+import com.bitcamp.web.repositories.CustomerRepository;
 import com.bitcamp.web.service.CustomerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +15,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CustomerServiceImpl implements CustomerService {
-   
+   @Autowired CustomerRepository customerRepository;
 
     @Override
     public void addCustomer(CustomerDTO customer) {
-
+        
     }
 
     @Override
@@ -54,8 +54,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public int countAll() {
-        return 0;
+    public Long countAll() {
+        return customerRepository.count();
     }
 
     @Override

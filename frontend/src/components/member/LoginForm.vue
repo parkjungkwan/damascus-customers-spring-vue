@@ -48,19 +48,19 @@ export default {
       post: ()=>{
         axios.post('/customers')
         .then(d=>{
-          alert(`POST 연동성공: ${d.result}`)
+          alert(`POST 연동성공: ${d.data.result}`)
         })
       },
       put: ()=>{
         axios.put('/customers/id')
         .then(d=>{
-          alert(`PUT 연동성공: ${d.result}`)
+          alert(`PUT 연동성공: ${d.data.result}`)
         })
       },
       del: ()=>{
         axios.delete('/customers/id')
         .then(d=>{
-          alert(`DEL 연동성공: ${d.result}`)
+          alert(`DEL 연동성공: ${d.data.result}`)
         })
       }
 

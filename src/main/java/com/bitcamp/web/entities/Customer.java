@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
 @Getter
 @ToString
@@ -39,7 +39,7 @@ public class Customer implements Serializable {
     }
 
     @Builder
-    private Customer(String customerId,String customerName,
+    public Customer(String customerId,String customerName,
     String password,String ssn,String phone,String city,
     String address,String postalcode,String photo){
         this.customerId = customerId;
